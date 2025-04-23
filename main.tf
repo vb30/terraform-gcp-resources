@@ -37,8 +37,3 @@ module "vulnerable_resources2" {
 #   description = "Version of the vulnerable node pool"
 #   value       = module.vulnerable_gke_test.node_pool_version
 # }
-
-import {
-  id = "karan-test-bucket-1"
-  to = module.vulnerable_resources2.google_storage_bucket.bucket3
-}
