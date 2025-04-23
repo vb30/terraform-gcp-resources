@@ -3,14 +3,14 @@ provider "google" {
   # (e.g., gcloud auth application-default login)
 }
 
-module "vulnerable_gke_test" {
-  source     = "./modules/gke"
-  project_id = "cpt-poc-1"
+# module "vulnerable_gke_test" {
+#   source     = "./modules/gke"
+#   project_id = "cpt-poc-1"
 
-  # You can override other variables defined in modules/gke/vulnerable_cluster.tf here if needed
-  # region       = "us-west1" 
-  # cluster_name = "my-test-cluster"
-}
+#   # You can override other variables defined in modules/gke/vulnerable_cluster.tf here if needed
+#   # region       = "us-west1" 
+#   # cluster_name = "my-test-cluster"
+# }
 
 module "vulnerable_resources" {
   source     = "./modules/app"
@@ -20,12 +20,25 @@ module "vulnerable_resources" {
   # cluster_name = "my-test-cluster"
 }
 
-output "test_cluster_endpoint" {
-  description = "Endpoint for the test GKE cluster"
-  value       = module.vulnerable_gke_test.cluster_endpoint
+module "vulnerable_resources2" {
+  source     = "./modules/app2"
+
+  # You can override other variables defined in modules/gke/vulnerable_cluster.tf here if needed
+  # region       = "us-west1" 
+  # cluster_name = "my-test-cluster"
 }
 
-output "test_node_pool_version" {
-  description = "Version of the vulnerable node pool"
-  value       = module.vulnerable_gke_test.node_pool_version
+# output "test_cluster_endpoint" {
+#   description = "Endpoint for the test GKE cluster"
+#   value       = module.vulnerable_gke_test.cluster_endpoint
+# }
+
+# output "test_node_pool_version" {
+#   description = "Version of the vulnerable node pool"
+#   value       = module.vulnerable_gke_test.node_pool_version
+# }
+
+import {
+  id = "karan-test-bucket-1"
+  to = module.vulnerable_resources2.google_storage_bucket.bucket3
 }
