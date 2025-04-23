@@ -92,8 +92,8 @@ resource "google_container_node_pool" "vulnerable_node_pool" {
     ]
   }
 
-  # Explicitly set the version for the node pool
-  version = "1.31.4-gke.1372000"
+  # Explicitly set the version for the node pool (Updated to remediate CVE-2024-53164 / GCP-2025-012-cos)
+  version = "1.31.6-gke.1064000"
 }
 
 # Outputs (optional)
@@ -108,4 +108,4 @@ output "cluster_ca_certificate" {
 
 output "node_pool_version" {
   value = google_container_node_pool.vulnerable_node_pool.version
-} 
+}
