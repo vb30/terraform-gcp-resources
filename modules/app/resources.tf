@@ -7,7 +7,11 @@ resource "google_compute_firewall" "nam1" {
   network                 = "https://www.googleapis.com/compute/v1/projects/cpt-poc-1/global/networks/default"
   priority                = 65534
   project                 = jsonencode(380343084411)
-  source_ranges           = ["0.0.0.0/0"]
+  source_ranges = [
+    "10.0.0.0/8",       # 10.0.0.0 — 10.255.255.255
+    "172.16.0.0/12",    # 172.16.0.0 — 172.31.255.255
+    "192.168.0.0/16"     # 192.168.0.0 — 192.168.255.255
+]
   source_tags             = []
   allow {
     ports    = ["22"]
