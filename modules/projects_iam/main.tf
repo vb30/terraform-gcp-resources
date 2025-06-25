@@ -62,3 +62,10 @@ resource "google_project_iam_member" "project_iam_additive" {
     }
   }
 }
+
+# Resource to remove user:ankurdua@prod.google.com from roles/cloudasset.owner for project terraform-294453
+resource "google_project_iam_member_remove" "remove_cloudasset_owner_ankurdua" {
+  project = "terraform-294453"
+  role    = "roles/cloudasset.owner"
+  member  = "user:ankurdua@prod.google.com"
+}
