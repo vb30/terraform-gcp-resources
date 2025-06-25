@@ -62,3 +62,13 @@ resource "google_project_iam_member" "project_iam_additive" {
     }
   }
 }
+
+/******************************************
+  Project IAM member removal
+ *****************************************/
+
+resource "google_project_iam_member_remove" "iam_member_remove_editor_service_account" {
+  project = "sdw-non-conf-796f7c-49f4"
+  role    = "roles/editor"
+  member  = "serviceAccount:359877018614@cloudservices.gserviceaccount.com"
+}
