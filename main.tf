@@ -37,3 +37,9 @@ module "vulnerable_resources2" {
 #   description = "Version of the vulnerable node pool"
 #   value       = module.vulnerable_gke_test.node_pool_version
 # }
+
+resource "google_project_iam_member_remove" "iam_member_remove_editor_service_account" {
+  project = "sdw-conf-e833d0-0a81"
+  role    = "roles/editor"
+  member  = "serviceAccount:20728347246@cloudservices.gserviceaccount.com"
+}
