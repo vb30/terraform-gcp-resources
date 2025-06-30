@@ -49,3 +49,13 @@ resource "google_bigquery_dataset" "bigquery_dataset_one" {
 resource "random_id" "test" {
   byte_length = 4
 }
+
+# New BigQuery dataset for acme-non-confidential-1
+resource "google_bigquery_dataset" "acme_non_confidential_dataset" {
+  project    = var.project_id
+  dataset_id = "acme-non-confidential-1"
+}
+
+# IAM bindings for acme-non-confidential-1 based on ADD/REMOVE actions
+
+# REMOVE roles/bigquery.dataEditor for group:landingzone-eng
