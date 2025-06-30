@@ -16,7 +16,7 @@
 
 variable "projects" {
   description = "Projects list to add the IAM policies/bindings"
-  default     = []
+  default     = ["pam-dp-maf"] # Added the project ID
   type        = list(string)
 }
 
@@ -29,7 +29,9 @@ variable "mode" {
 variable "bindings" {
   description = "Map of role (key) and list of members (value) to add the IAM policies/bindings"
   type        = map(list(string))
-  default     = {}
+  default     = {
+    "roles/networkconnectivity.regionalEndpointViewer" = ["serviceAccount:environmentgate-admin@pam-dp-maf.iam.gserviceaccount.com"] # Added the new binding
+  }
 }
 
 variable "conditional_bindings" {
